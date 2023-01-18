@@ -87,3 +87,4 @@ C:\Users\DELL\Desktop\Apps\AuthLibrary\AuthLibrary.WenApi\obj\Debug\net6.0\refin
 C:\Users\DELL\Desktop\Apps\AuthLibrary\AuthLibrary.WenApi\obj\Debug\net6.0\AuthLibrary.WenApi.pdb
 C:\Users\DELL\Desktop\Apps\AuthLibrary\AuthLibrary.WenApi\obj\Debug\net6.0\AuthLibrary.WenApi.genruntimeconfig.cache
 C:\Users\DELL\Desktop\Apps\AuthLibrary\AuthLibrary.WenApi\obj\Debug\net6.0\ref\AuthLibrary.WenApi.dll
+C:\Users\DELL\Desktop\Apps\AuthLibrary\AuthLibrary.WenApi\obj\Debug\net6.0\AuthLibrary.WenApi.MvcApplicationPartsAssemblyInfo.cs

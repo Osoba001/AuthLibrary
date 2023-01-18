@@ -54,12 +54,16 @@ namespace AuthLibrary.WenApi.Controllers
         }
 
         [HttpPost("user-role")]
-        public async Task<IActionResult> AddRole(string userRole)
+        public async Task<IActionResult> AddRole([FromQuery] string userRole)
         {
             var resp=await _userRoleService.AddRole(userRole);
-            if (resp.IsSuccess)
-                return Ok();
-            return BadRequest(resp.FistError);
+            return ReturnAction(resp);
+        }
+        [HttpDelete("role")]
+        public async Task<IActionResult> RemoveRole([FromQuery] string userRole)
+        {
+            var resp = await _userRoleService.RemoveRole(userRole);
+            return ReturnAction(resp);
         }
 
         [HttpGet("user-roles")]
@@ -83,34 +87,25 @@ namespace AuthLibrary.WenApi.Controllers
                 return BadRequest("Refresh to is null.");
         }
 
-        [HttpDelete]
+        [HttpDelete("false-delete")]
         public async Task<IActionResult> FalseDeleteUser(Guid userId)
         {
             var res=await _userService.FalseDeleteUser(userId);
-            if (res.IsSuccess)
-                return Ok();
-            else
-                return BadRequest(res.FistError);
+            return ReturnAction(res);
         }
 
-        [HttpPut("Undo-False-delete")]
+        [HttpPut("undo-False-delete")]
         public async Task<IActionResult> UndoFalseDelete(Guid userId)
         {
             var res = await _userService.UndoFalseDelete(userId);
-            if (res.IsSuccess)
-                return Ok();
-            else
-                return BadRequest(res.FistError);
+            return ReturnAction(res);
         }
 
         [HttpDelete("hard-delete")]
         public async Task<IActionResult> HardDeleteUser(Guid userId)
         {
             var res = await _userService.HardDeleteUser(userId);
-            if (res.IsSuccess)
-                return Ok();
-            else
-                return BadRequest(res.FistError);
+            return ReturnAction(res);
         }
 
         [HttpGet("User-by-role")]
@@ -123,29 +118,20 @@ namespace AuthLibrary.WenApi.Controllers
         public async Task<IActionResult> AddRoleToUser(Guid userId ,string role)
         {
             var res=await _userService.AddRoleToUser(userId,role);
-            if (res.IsSuccess)
-                return Ok();
-            else
-                return BadRequest(res.FistError);
+            return ReturnAction(res);
         }
         [HttpPut("remove-role-from-user")]
         public async Task<IActionResult> RemoveRoleFromUser(Guid userId, string role)
         {
             var res = await _userService.RemoveRoleFromUser(userId, role);
-            if (res.IsSuccess)
-                return Ok();
-            else
-                return BadRequest(res.FistError);
+            return ReturnAction(res);
         }
 
         [HttpPut("change-password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordCommand changePassword)
         {
-            var res=await _userService.ChangePassword(changePassword.UserId,changePassword.OldPassword,changePassword.NewPassword);  
-            if (res.IsSuccess)
-                return Ok();
-            else
-                return BadRequest(res.FistError);
+            var res=await _userService.ChangePassword(changePassword.UserId,changePassword.OldPassword,changePassword.NewPassword);
+            return ReturnAction(res);
         }
 
         [HttpPost("forgot-password")]
@@ -154,7 +140,7 @@ namespace AuthLibrary.WenApi.Controllers
             var pin=await _userService.ForgottenPassword(email);
             if (pin > 0)
             {
-                //send pin to the user email.
+                //send pin to the user email or sms.
                 // for testing purpose i will return pin
                 return Ok(pin);
             }
@@ -166,16 +152,18 @@ namespace AuthLibrary.WenApi.Controllers
         public async Task<IActionResult> PasswordRecovery([FromBody] ConfirmPinCommand confirmPin)
         {
             var res= await _userService.RecoverPassword(confirmPin.Email, confirmPin.RecoveryPin);
-            if (res.IsSuccess)
-                return Ok();
-            else 
-                return BadRequest(res.FistError);
+            return ReturnAction(res);
         }
 
         [HttpPut("new-password")]
         public async Task<IActionResult> EnterNewPassword([FromBody] NewPasswordCommand newPassword)
         {
             var res = await _userService.NewPassword(newPassword.Password, newPassword.Email, newPassword.RecoveryPin);
+            return ReturnAction(res);
+        }
+
+        private IActionResult ReturnAction(Auth.Response.ActionResult res)
+        {
             if (res.IsSuccess)
                 return Ok();
             else

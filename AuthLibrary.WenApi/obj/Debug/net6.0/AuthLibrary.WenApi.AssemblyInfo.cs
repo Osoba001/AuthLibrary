@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("8b9a474c-a5dc-4044-afc1-fa4e4ad4d4e1")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("AuthLibrary.WenApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

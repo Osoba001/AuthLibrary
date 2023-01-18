@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthLibrary.WenApi", "AuthL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth", "Auth\Auth.csproj", "{711C1081-7AB9-49B3-8055-1A2B8195DCC8}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AuthDb", "AuthDb\AuthDb.sqlproj", "{9412DB31-E6E9-42CD-827B-9602BBE165A0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +21,6 @@ Global
 		{711C1081-7AB9-49B3-8055-1A2B8195DCC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{711C1081-7AB9-49B3-8055-1A2B8195DCC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{711C1081-7AB9-49B3-8055-1A2B8195DCC8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9412DB31-E6E9-42CD-827B-9602BBE165A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9412DB31-E6E9-42CD-827B-9602BBE165A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9412DB31-E6E9-42CD-827B-9602BBE165A0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{9412DB31-E6E9-42CD-827B-9602BBE165A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9412DB31-E6E9-42CD-827B-9602BBE165A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9412DB31-E6E9-42CD-827B-9602BBE165A0}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
