@@ -10,17 +10,19 @@ namespace AuthLibrary.WenApi.Controllers
     {
         private readonly IUserService _userService;
         private readonly IUserRoleService _userRoleService;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IUserService userService,IUserRoleService userRoleService)
+        public AuthController(IUserService userService,IUserRoleService userRoleService, ILogger<AuthController> logger)
         {
             _userService = userService;
             _userRoleService = userRoleService;
+            _logger = logger;
         }
 
-        [HttpPost]
+        [HttpPost()]
         public async Task<IActionResult> RegisterUser([FromBody] CreateUserCommand user)
         {
-            var resp = await _userService.Register(user.Email, user.Name, user.Password);
+            var resp = await _userService.Register(user.Email, user.UserName, user.Password);
             if (resp.IsSuccess && resp.Entity!.RefreshToken != null)
             {
                 Response.Cookies.Append("refreshToken", resp.Entity.RefreshToken, new CookieOptions { HttpOnly = true });

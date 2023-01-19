@@ -60,7 +60,8 @@ namespace Auth.AuthServices
                 
                 Subject = new ClaimsIdentity(claims),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(encodedKey), SecurityAlgorithms.HmacSha256),
-                Expires = DateTime.UtcNow.AddMinutes(_accessTokenExpireTime)
+                Expires = DateTime.UtcNow.AddMinutes(_accessTokenExpireTime),
+                
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
